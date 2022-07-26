@@ -1,3 +1,24 @@
+ARG ONLYOFFICE_DIR=/var/www/onlyoffice/documentserver
+ARG ONLYOFFICE_EXTRA_FONTS_DIR=${ONLYOFFICE_DIR}/extra-fonts
+
+
+# 安装字体
+FROM storezhang/ubuntu AS font
+
+
+WORKDIR /opt
+
+
+RUN apt update -y
+RUN apt install git libcurl4-openssl-dev -y
+RUN git clone --depth=1 https://gitee.com/storezhang/font.git ${ONLYOFFICE_EXTRA_FONTS_DIR}
+RUN ls -al ${ONLYOFFICE_EXTRA_FONTS_DIR}
+
+
+
+
+
+# 打包真正的镜像
 FROM onlyoffice/documentserver
 
 
@@ -8,15 +29,16 @@ LABEL wechat="storezhang"
 LABEL description="Onlyoffice镜像，增加常用中文字体"
 
 
+ARG ONLYOFFICE_DIR
+ARG ONLYOFFICE_EXTRA_FONTS_DIR
+ARG ONLYOFFICE_FONTS_DIR=${ONLYOFFICE_DIR}/fonts
+ARG ONLYOFFICE_CORE_FONTS_DIR=${ONLYOFFICE_DIR}/core-fonts
 ENV FONTS_DIR /usr/share/fonts
 ENV LOCAL_FONTS_DIR /usr/local/share/fonts
-ENV ONLYOFFICE_DIR /var/www/onlyoffice/documentserver
-ENV ONLYOFFICE_FONTS_DIR ${ONLYOFFICE_DIR}/fonts
-ENV ONLYOFFICE_CORE_FONTS_DIR ${ONLYOFFICE_DIR}/core-fonts
-ENV ONLYOFFICE_EXTRA_FONTS_DIR ${ONLYOFFICE_DIR}/extra-fonts
 
 
-COPY docker /
+# 复制字体
+COPY --from=font ${ONLYOFFICE_EXTRA_FONTS_DIR} ${ONLYOFFICE_EXTRA_FONTS_DIR}
 
 
 RUN set -ex \
