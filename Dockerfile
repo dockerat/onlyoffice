@@ -21,10 +21,14 @@ RUN set -ex \
   \
   # 安装字体
   && rm -rf ${FONTS_DIR}/*.ttf \
+  && rm -rf ${FONTS_DIR}/*.otf \
   && rm -rf ${LOCAL_FONTS_DIR}/*.ttf \
+  && rm -rf ${LOCAL_FONTS_DIR}/*.otf \
   && mv /opt/local/share/fonts/* ${LOCAL_FONTS_DIR} \
   && fc-cache -f -v \
-  && documentserver-generate-allfonts.sh \
+  \
+  \
+  \
   # 清理镜像，减少无用包
   && rm -rf /var/lib/apt/lists/* \
   && apt autoremove -y \
