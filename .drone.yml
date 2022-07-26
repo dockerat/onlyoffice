@@ -1,0 +1,30 @@
+kind: pipeline
+type: docker
+name: Onlyoffice
+
+
+clone:
+  disable: true
+
+
+steps:
+  - name: 代码
+    image: dronestock/git
+
+  - name: 发布
+    image: dronestock/docker
+    privileged: true
+    volumes:
+      - name: docker
+        path: /var/lib/docker
+    settings:
+      repository: storezhang/onlyoffice
+      username: storezhang
+      password:
+        from_secret: token_docker
+
+
+volumes:
+  - name: docker
+    host:
+      path: /var/lib/cache/docker
