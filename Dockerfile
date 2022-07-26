@@ -33,7 +33,3 @@ RUN set -ex \
   && rm -rf /var/lib/apt/lists/* \
   && apt autoremove -y \
   && apt autoclean
-
-
-# 不要重复生成字体
-ENV GENERATE_FONTS false
