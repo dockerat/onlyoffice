@@ -48,14 +48,12 @@ RUN set -ex \
   \
   \
   # 安装字体
-  && rm -rf ${FONTS_DIR}/*.ttf \
-  && rm -rf ${FONTS_DIR}/*.otf \
-  && rm -rf ${LOCAL_FONTS_DIR}/*.ttf \
-  && rm -rf ${LOCAL_FONTS_DIR}/*.otf \
+  && find ${FONTS_DIR} -regextype posix-egrep -regex ".*\.(ttf|otf)$" -type f -delete \
+  && find ${LOCAL_FONTS_DIR} -regextype posix-egrep -regex ".*\.(ttf|otf)$" -type f -delete \
   && rm -rf ${ONLYOFFICE_CORE_FONTS_DIR}/* \
   && rm -rf ${ONLYOFFICE_FONTS_DIR}/* \
   && mv ${ONLYOFFICE_EXTRA_FONTS_DIR}/* ${ONLYOFFICE_CORE_FONTS_DIR}/ \
-  && rm -rf ${ONLYOFFICE_EXTRA_FONTS_DIR} \
+  && rm -rf ${ONLYOFFICE_EXTRA_FONTS_DIR} && ls -al ${FONTS_DIR}/truetype/dejavu \
   \
   \
   \
