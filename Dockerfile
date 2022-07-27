@@ -11,8 +11,10 @@ WORKDIR /opt
 
 RUN apt update -y
 RUN apt install git libcurl4-openssl-dev -y
+
+# 克隆所有字体
+ARG ONLYOFFICE_EXTRA_FONTS_DIR
 RUN git clone --depth=1 https://gitee.com/storezhang/font.git ${ONLYOFFICE_EXTRA_FONTS_DIR}
-RUN ls -al ${ONLYOFFICE_EXTRA_FONTS_DIR}
 
 
 
