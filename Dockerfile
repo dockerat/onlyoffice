@@ -33,7 +33,6 @@ LABEL description="Onlyoffice镜像，增加常用中文字体"
 
 ARG ONLYOFFICE_DIR
 ARG ONLYOFFICE_EXTRA_FONTS_DIR
-ARG ONLYOFFICE_FONTS_DIR=${ONLYOFFICE_DIR}/fonts
 ARG ONLYOFFICE_CORE_FONTS_DIR=${ONLYOFFICE_DIR}/core-fonts
 ENV FONTS_DIR /usr/share/fonts
 ENV LOCAL_FONTS_DIR /usr/local/share/fonts
@@ -50,10 +49,8 @@ RUN set -ex \
   # 安装字体
   && find ${FONTS_DIR} -regextype posix-egrep -regex ".*\.(ttf|otf)$" -type f -delete \
   && find ${LOCAL_FONTS_DIR} -regextype posix-egrep -regex ".*\.(ttf|otf)$" -type f -delete \
-  && rm -rf ${ONLYOFFICE_CORE_FONTS_DIR}/* \
-  && rm -rf ${ONLYOFFICE_FONTS_DIR}/* \
   && mv ${ONLYOFFICE_EXTRA_FONTS_DIR}/* ${ONLYOFFICE_CORE_FONTS_DIR}/ \
-  && rm -rf ${ONLYOFFICE_EXTRA_FONTS_DIR} && ls -al ${FONTS_DIR}/truetype/dejavu \
+  && rm -rf ${ONLYOFFICE_EXTRA_FONTS_DIR} \
   \
   \
   \
