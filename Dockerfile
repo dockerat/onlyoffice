@@ -1,5 +1,4 @@
-ARG ONLYOFFICE_DIR=/var/www/onlyoffice/documentserver
-ARG ONLYOFFICE_EXTRA_FONTS_DIR=${ONLYOFFICE_DIR}/extra-fonts
+ARG EXTRA_FONTS_DIR=/opt/fonts
 
 
 # 安装字体
@@ -13,8 +12,8 @@ RUN apt update -y
 RUN apt install git libcurl4-openssl-dev -y
 
 # 克隆所有字体
-ARG ONLYOFFICE_EXTRA_FONTS_DIR
-RUN git clone --depth=1 https://gitee.com/storezhang/font.git ${ONLYOFFICE_EXTRA_FONTS_DIR}
+ARG EXTRA_FONTS_DIR
+RUN git clone --depth=1 https://gitee.com/storezhang/font.git ${EXTRA_FONTS_DIR}
 
 
 
@@ -31,15 +30,12 @@ LABEL wechat="storezhang"
 LABEL description="Onlyoffice镜像，增加常用中文字体"
 
 
-ARG ONLYOFFICE_DIR
-ARG ONLYOFFICE_EXTRA_FONTS_DIR
-ARG ONLYOFFICE_CORE_FONTS_DIR=${ONLYOFFICE_DIR}/core-fonts
+ARG EXTRA_FONTS_DIR
 ENV FONTS_DIR /usr/share/fonts
-ENV LOCAL_FONTS_DIR /usr/local/share/fonts
 
 
 # 复制字体
-COPY --from=font ${ONLYOFFICE_EXTRA_FONTS_DIR} ${ONLYOFFICE_EXTRA_FONTS_DIR}
+COPY --from=font ${EXTRA_FONTS_DIR} ${FONTS_DIR}
 
 
 RUN set -ex \
@@ -47,10 +43,7 @@ RUN set -ex \
   \
   \
   # 安装字体
-  && find ${FONTS_DIR} -regextype posix-egrep -regex ".*\.(ttf|otf)$" -type f -delete \
-  && find ${LOCAL_FONTS_DIR} -regextype posix-egrep -regex ".*\.(ttf|otf)$" -type f -delete \
-  && mv ${ONLYOFFICE_EXTRA_FONTS_DIR}/* ${ONLYOFFICE_CORE_FONTS_DIR}/ \
-  && rm -rf ${ONLYOFFICE_EXTRA_FONTS_DIR} \
+  && fc-cache -f -v  \
   \
   \
   \
