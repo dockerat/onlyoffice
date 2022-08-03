@@ -39,24 +39,24 @@ ARG ONLYOFFICE_CORE_FONTS_DIR=${ONLYOFFICE_DIR}/core-fonts
 ARG ONLYOFFICE_WORD_APP_JS=/var/www/onlyoffice/documentserver/web-apps/apps/documenteditor/main/app.js
 ARG ONLYOFFICE_EXCEL_APP_JS=/var/www/onlyoffice/documentserver/web-apps/apps/spreadsheeteditor/main/app.js
 
-ARG ONLYOFFICE_REPLACE_FONT_SIZE={value:8,displayValue:\"8\"}
-ARG CHINESE_FONT_SIZE={value:5,displayValue:\"八号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:5.5,displayValue:\"七号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:6.5,displayValue:\"小六\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:7.5,displayValue:\"六号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:9,displayValue:\"小五\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:10.5,displayValue:\"五号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:12,displayValue:\"小四\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:14,displayValue:\"四号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:15,displayValue:\"小三\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:16,displayValue:\"三号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:18,displayValue:\"小二\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:22,displayValue:\"二号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:24,displayValue:\"小一\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:26,displayValue:\"一号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:36,displayValue:\"小初\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},{value:42,displayValue:\"初号\"}
-ARG CHINESE_FONT_SIZE=${CHINESE_FONT_SIZE},${ONLYOFFICE_REPLACE_FONT_SIZE}
+ARG ONLYOFFICE_REPLACE_FONT_SIZE="{value:8,displayValue:\"8\"}"
+ARG CHINESE_FONT_SIZE="{value:5,displayValue:\"八号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:5.5,displayValue:\"七号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:6.5,displayValue:\"小六\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:7.5,displayValue:\"六号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:9,displayValue:\"小五\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:10.5,displayValue:\"五号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:12,displayValue:\"小四\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:14,displayValue:\"四号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:15,displayValue:\"小三\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:16,displayValue:\"三号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:18,displayValue:\"小二\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:22,displayValue:\"二号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:24,displayValue:\"小一\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:26,displayValue:\"一号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:36,displayValue:\"小初\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},{value:42,displayValue:\"初号\"}"
+ARG CHINESE_FONT_SIZE="${CHINESE_FONT_SIZE},${ONLYOFFICE_REPLACE_FONT_SIZE}"
 
 ENV FONTS_DIR /usr/share/fonts
 ENV LOCAL_FONTS_DIR /usr/local/share/fonts
