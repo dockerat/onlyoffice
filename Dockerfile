@@ -79,6 +79,8 @@ RUN set -ex \
   # 将字体添加到核心字体为中
   && mv ${ONLYOFFICE_ADDON_FONTS_DIR}/* ${ONLYOFFICE_CORE_FONTS_DIR}/ \
   && rm -rf ${ONLYOFFICE_ADDON_FONTS_DIR} \
+  # 去掉拼写检查
+  && sed -i "s/promises.push/promises.push(true);\/\//" /var/www/onlyoffice/documentserver/server/SpellChecker/sources/spellCheck.js \
   # 增加中文字号
   && sed -i 's/{value:9,displayValue:"9"},//' ${ONLYOFFICE_WORD_APP_JS} \
   && sed -i 's/{value:12,displayValue:"12"},//' ${ONLYOFFICE_WORD_APP_JS} \
