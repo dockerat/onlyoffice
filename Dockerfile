@@ -22,7 +22,7 @@ RUN git clone --depth=1 https://gitee.com/storezhang/font.git ${ONLYOFFICE_ADDON
 
 
 # 打包真正的镜像
-FROM onlyoffice/documentserver
+FROM onlyoffice/documentserver:7.1.1
 
 
 LABEL author="storezhang<华寅>"
