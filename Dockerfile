@@ -65,7 +65,6 @@ ENV GENERATE_FONTS false
 
 # 复制字体
 COPY --from=font ${ONLYOFFICE_ADDON_FONTS_DIR} ${ONLYOFFICE_ADDON_FONTS_DIR}
-COPY docker /
 
 
 RUN set -ex \
