@@ -1,3 +1,18 @@
+kind: secret
+name: token_docker
+get:
+  path: secrets
+  name: token_docker_dronestock
+---
+
+kind: secret
+name: password_ccr
+get:
+  path: secrets
+  name: password_ccr
+---
+
+
 kind: pipeline
 type: docker
 name: Onlyoffice
@@ -21,9 +36,10 @@ steps:
       PASSWORD_DOCKER:
         from_secret: token_docker
       PASSWORD_CCR:
-        from_secret: password_tencentyun_ccr
+        from_secret: password_ccr
     settings:
       repository: storezhang/onlyoffice
+      tag: match(file('testdata/Dockerfile'), '.*(FROM onlyoffice/documentserver:(.*)\\s*).*')[2]
       registries:
         - username: storezhang
           password: $${PASSWORD_DOCKER}

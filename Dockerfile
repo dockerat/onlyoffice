@@ -25,11 +25,11 @@ RUN git clone --depth=1 https://gitee.com/storezhang/font.git ${ONLYOFFICE_ADDON
 FROM onlyoffice/documentserver:7.3.3.49
 
 
-LABEL author="storezhang<华寅>"
-LABEL email="storezhang@gmail.com"
-LABEL qq="160290688"
-LABEL wechat="storezhang"
-LABEL description="Onlyoffice镜像，增加常用中文字体"
+LABEL author="storezhang<华寅>" \
+  email="storezhang@gmail.com" \
+  qq="160290688" \
+  wechat="storezhang" \
+  description="Onlyoffice镜像，增加常用中文字体"
 
 
 ARG ONLYOFFICE_DIR
