@@ -15,7 +15,7 @@ get:
 
 kind: pipeline
 type: docker
-name: Onlyoffice
+name: 发布
 
 
 clone:
@@ -24,10 +24,12 @@ clone:
 
 steps:
   - name: 代码
-    image: ccr.ccs.tencentyun.com/dronestock/git
+    image: ccr.ccs.tencentyun.com/dronestock/git:0.0.479
+    pull: always
 
   - name: 发布
     image: ccr.ccs.tencentyun.com/dronestock/docker
+    pull: always
     privileged: true
     volumes:
       - name: docker
@@ -39,7 +41,7 @@ steps:
         from_secret: password_ccr
     settings:
       repository: storezhang/onlyoffice
-      tag: match(file('testdata/Dockerfile'), '.*(FROM onlyoffice/documentserver:(.*)\\s*).*')[2]
+      tag: match(file('Dockerfile'), '.*(FROM onlyoffice/documentserver:(.*)\\\\s*).*')[2]
       registries:
         - username: storezhang
           password: $${PASSWORD_DOCKER}
