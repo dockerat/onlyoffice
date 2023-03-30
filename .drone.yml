@@ -24,7 +24,7 @@ clone:
 
 steps:
   - name: 代码
-    image: ccr.ccs.tencentyun.com/dronestock/git:0.0.479
+    image: ccr.ccs.tencentyun.com/dronestock/git
     pull: always
 
   - name: 发布
