@@ -3,7 +3,7 @@ ARG ONLYOFFICE_ADDON_FONTS_DIR=${ONLYOFFICE_DIR}/addon-fonts
 
 
 # 安装字体
-FROM storezhang/ubuntu:23.04.17 AS font
+FROM ccr.ccs.tencentyun.com/storezhang/ubuntu:23.04.17 AS font
 
 
 WORKDIR /opt
