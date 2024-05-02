@@ -102,3 +102,6 @@ RUN set -ex \
   && rm -rf /var/lib/apt/lists/* \
   && apt autoremove -y \
   && apt autoclean
+
+# 健康检查
+HEALTHCHECK --interval=15s --timeout=5s --retries=10 --start-period=1m CMD curl --include --fail --silent http://127.0.0.1/healthcheck || exit 1
