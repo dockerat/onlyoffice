@@ -104,4 +104,4 @@ RUN set -ex \
   && apt autoclean
 
 # 健康检查
-HEALTHCHECK --interval=15s --timeout=5s --retries=10 --start-period=1m CMD curl --include --fail --silent http://127.0.0.1/healthcheck || exit 1
+HEALTHCHECK --interval=1s --timeout=1s --retries=3 --start-period=1m CMD curl --include --fail --silent http://127.0.0.1/healthcheck || exit 1
