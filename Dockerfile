@@ -73,6 +73,8 @@ RUN set -ex \
   # 将字体添加到核心字体为中
   && mv ${ONLYOFFICE_ADDON_FONTS_DIR}/* ${ONLYOFFICE_CORE_FONTS_DIR}/ \
   && rm -rf ${ONLYOFFICE_ADDON_FONTS_DIR} \
+  # 修正引用问题
+  && sed -i "s/https:\/\/ajax.googleapis.com\/ajax\/libs\/jquery\/2.2.2\/jquery.min.js/vendor\/jQuery-2.2.2-min\/jquery-v2.2.2-min.js/" /var/www/onlyoffice/documentserver/sdkjs-plugins/highlightcode/index.html \
   # 增加中文字号
   && sed -i "s/${CHINESE_FONT_SIZE}/g" $(grep -rwl --include="*.js" "{value:8,displayValue:\"8\"}" /var/www/onlyoffice/documentserver/web-apps/apps) \
   # 生成字体文件
