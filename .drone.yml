@@ -12,6 +12,20 @@ get:
   name: password_ccr
 ---
 
+kind: secret
+name: id_feishu
+get:
+  path: secrets
+  name: id_feishu
+---
+
+kind: secret
+name: secret_feishu
+get:
+  path: secrets
+  name: secret_feishu
+---
+
 
 kind: pipeline
 type: docker
@@ -23,7 +37,7 @@ clone:
 
 
 steps:
-  - name: 代码
+  - name: 取码
     image: ccr.ccs.tencentyun.com/dronestock/git
     pull: always
 
@@ -41,14 +55,16 @@ steps:
         from_secret: password_ccr
     settings:
       repository: storezhang/onlyoffice
-      tag: match(file('Dockerfile'), '.*(FROM onlyoffice/documentserver:(.*)\\\\s*).*')[2]
+      tag: match(file('Dockerfile'), '.*(FROM onlyoffice/documentserver:(.*)\\\\s*).*')[2] + '.$${DRONE_BUILD_NUMBER}'
+      platforms:
+        - arch: amd64
+        - arch: arm64
       registries:
         - username: storezhang
           password: $${PASSWORD_DOCKER}
         - hostname: ccr.ccs.tencentyun.com
           username: "160290688"
           password: $${PASSWORD_CCR}
-          required: true
 
 
 volumes:
